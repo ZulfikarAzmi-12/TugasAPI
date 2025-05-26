@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     private static final String BASE_URL = "https://www.thesportsdb.com/api/v1/json/3/";
     private static RetrofitClient instance;
-    private final SportDBApi sportDBApi;
+    private final ApiService sportDBApi;
 
     private RetrofitClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -21,7 +21,7 @@ public class RetrofitClient {
                 .client(client)
                 .build();
 
-        sportDBApi = retrofit.create(SportDBApi.class);
+        sportDBApi = retrofit.create(ApiService.class);
     }
 
     public static synchronized RetrofitClient getInstance() {
@@ -31,7 +31,7 @@ public class RetrofitClient {
         return instance;
     }
 
-    public SportDBApi getSportDBApi() {
+    public ApiService getSportDBApi() {
         return sportDBApi;
     }
 }
